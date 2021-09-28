@@ -113,11 +113,3 @@ class UnitCircle(gym.Env):
         # set the total number of episode steps
         self.steps_left = self.steps
         return self.state
-        
-        
-    def render(self):
-        pass
-    
-    
-    
-    
