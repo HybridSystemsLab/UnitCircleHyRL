@@ -15,7 +15,7 @@ def state_to_angle(state):
     angle = np.float32((angle + 2*np.pi) % (2*np.pi))
     return angle
 
-def plot_policy(model, resolution=100, figure_number=1):
+def plot_policy(model, resolution=25, figure_number=1):
     plt.figure(figure_number)
     theta = np.linspace(0, 2*np.pi, resolution)
     actions = []
@@ -31,7 +31,7 @@ def plot_policy(model, resolution=100, figure_number=1):
     plt.xlim(0.9, 1.1)
     plt.tight_layout()
 
-def plot_policy_circle(model, resolution=5000, figure_number=2):
+def plot_policy_circle(model, resolution=200, figure_number=2):
     plt.figure(figure_number)
     theta = np.linspace(0, 2*np.pi, resolution)
     actions = []
@@ -39,7 +39,7 @@ def plot_policy_circle(model, resolution=5000, figure_number=2):
         obs = np.array((np.cos(entry), np.sin(entry)), dtype=np.float32)
         action, _ = model.predict(obs)
         actions.append(action)
-    plt.scatter(np.cos(theta), np.sin(theta), s=15, c=actions)
+    plt.scatter(np.cos(theta), np.sin(theta), s=15, c=actions, rasterized=True)
     cbar = plt.colorbar(ticks=[-1, 0, 1])
     plt.clim(-1,1)
     cbar.ax.tick_params(labelsize=18)
